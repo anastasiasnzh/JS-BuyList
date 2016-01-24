@@ -10,36 +10,61 @@
 <body>
 <div class="common mainPanel">
     <div class="inputLine">
-        <input class="titleGeneral" type="text" name="titleGeneral" value="Назва товару">
-        <button class="addButton" type="button"><b>Додати</b></button>
+        <input id="articleTitle" class="titleGeneral" type="text" name="titleGeneral" value="Назва товару">
+        <button class="addButton" id="add" type="button"><b>Додати</b></button>
     </div>
-    <div class="title">
-        <div class="word crossedOut">Помідори</div>
-        <div class="sqrt boughtArticleAmount">2</div>
-        <button class="bought notB" type="button">Не куплено</button>
+    <!--<div class="title">-->
+    <!--<div class="word crossedOut">Помідори</div>-->
+    <!--<div class="sqrt boughtArticleAmount">2</div>-->
+    <!--<button class="bought notB" type="button">Не куплено</button>-->
+    <!--</div>-->
+    <div class="one_item">
+        <div class="title">
+            <div class="word">Помідори</div>
+            <button class="minus circ minusPassive" type="button">-</button>
+            <div class="sqrt">1</div>
+            <button class="plus circ" type="button">+</button>
+            <button class="bought" type="button">Куплено</button>
+            <button class="cross" type="button"><b>x</b></button>
+        </div>
     </div>
-    <div class="title">
-        <div class="word">Печиво</div>
-        <button class="minus circ" type="button">-</button>
-        <div class="sqrt">2</div>
-        <button class="plus circ" type="button">+</button>
-        <button class="bought" type="button">Куплено</button>
-        <button class="cross" type="button"><b>x</b></button>
+    <div class="one_item">
+        <div class="title">
+            <div class="word">Печиво</div>
+            <button class="minus circ minusPassive" type="button">-</button>
+            <div class="sqrt">1</div>
+            <button class="plus circ" type="button">+</button>
+            <button class="bought" type="button">Куплено</button>
+            <button class="cross" type="button"><b>x</b></button>
+        </div>
     </div>
-    <div class="title">
-        <input type="text" class="word editing" value="Сир">
-        <button class="minus circ minusPassive" type="button">-</button>
-        <div class="sqrt">1</div>
-        <button class="plus circ" type="button">+</button>
-        <button class="bought" type="button">Куплено</button>
-        <button class="cross" type="button"><b>x</b></button>
+    <div class="one_item">
+        <div class="title">
+            <div class="word">Сир</div>
+            <button class="minus circ minusPassive" type="button">-</button>
+            <div class="sqrt">1</div>
+            <button class="plus circ" type="button">+</button>
+            <button class="bought" type="button">Куплено</button>
+            <button class="cross" type="button"><b>x</b></button>
+        </div>
     </div>
+    <!--<div class="title">-->
+    <!--<input type="text" class="word editing" value="Сир">-->
+    <!--<button class="minus circ minusPassive" type="button">-</button>-->
+    <!--<div class="sqrt">1</div>-->
+    <!--<button class="plus circ" type="button">+</button>-->
+    <!--<button class="bought" type="button">Куплено</button>-->
+    <!--<button class="cross" type="button"><b>x</b></button>-->
+    <!--</div>-->
 </div>
 <div class="common sidePanel">
     <div class="empty"><b>Залишилося</b></div>
     <div class="empty">
+        <span class="article">Помідори
+            <span class="number">1</span>
+        </span>
         <span class="article">Печиво
-            <span class="number">2</span>
+            <span class="number">1</span>
         </span>
         <span class="article">Сир
             <span class="number">1</span>
@@ -47,9 +72,9 @@
     </div>
     <div class="empty"><b>Куплено</b></div>
     <div class="empty">
-        <span class="article crossedOut">Помідори
-            <span class="number crossedOut">2</span>
-        </span>
+        <!--<span class="article crossedOut">Помідори-->
+        <!--<span class="number crossedOut">2</span>-->
+        <!--</span>-->
     </div>
 
 </div>
