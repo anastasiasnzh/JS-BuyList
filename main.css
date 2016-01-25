@@ -75,11 +75,11 @@ body {
 }
 
 .minus {
-    background-color: red;
+    background-color: #e6aba8;
 }
 
-.minusPassive {
-    background-color: #e6aba8;
+.minusActive {
+    background-color: red;
 }
 
 .sqrt {
@@ -100,11 +100,13 @@ body {
 .word {
     display: inline-block;
     width: 225px;
+    background-color: #fafafa;
+    border: none;
 }
 
 .bought {
     background-color: #d7d7d7;
-    margin-left: 125px;
+    margin-left: 120px;
     width: 80px;
     height: 25px;
     font-size: 10px;
@@ -137,9 +139,13 @@ body {
 
 .notB {
     margin-left: 190px;
+    background-color: #d7d7d7;
+    width: 80px;
+    height: 25px;
+    font-size: 10px;
 }
 
-.editing {
+.word:focus {
     /*border: 2px solid #20fffb;*/
     border: none;
     font-size: 10px;
@@ -147,6 +153,7 @@ body {
     padding-top: 2px;
     width: 178px;
     margin-right: 40px;
+    background-color: white;
 }
 
 .article {
@@ -158,6 +165,8 @@ body {
     /*width: 60px;*/
     /*display: inline-block;*/
     margin: 3px;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .number {
