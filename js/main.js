@@ -12,6 +12,8 @@ $(function () {
     var LEFT_ITEMS = $('.one_article').html();//
     var BOUGHT_LIST = $('.boughtStat');//
     var BOUGHT_ITEMS = $('.one_article').html();//
+    var prev;
+    var current;
     $('#articleTitle').click(function () {
         $('#articleTitle').val("");
     })
@@ -21,104 +23,168 @@ $(function () {
         var leftNode = $(LEFT_ITEMS);//
         node.find(".word").val(title);
         leftNode.text(title);//
-        //leftNode.find(".article").find(".number").text("1");//
         LIST.append(node);
         LEFT_LIST.append(leftNode);//
-        var AMOUNT =$('.nu').html();
-        //AMOUNT.text("1");
-        //AMOUNT.addClass("number");
+        var AMOUNT = $('.nu').html();
         leftNode.append(AMOUNT);
         $('#articleTitle').val("");
         $('#articleTitle').focus();
+        $('.cross').click(function () {
+            $(this).parent().hide();
+            var txt = $(this).parent().find('.word').val();
+            $('.article:contains("' + txt + '")').hide();
 
+        })
+        $('.plus').click(function () {
+            var text = $(this).parent().find('.sqrt').text();
+            text = parseInt(text) + 1;
+            $(this).parent().find('.sqrt').text(text);
+            $(this).parent().find('.minus').addClass('minusActive');
+            var txt = $(this).parent().find('.word').val();
+            $('.article:contains("' + txt + '")').find('.nu').find('.number').text(text);
+        })
+        $('.minus').click(function () {
+            var text = $(this).parent().find('.sqrt').text();
+            text = parseInt(text) - 1;
+            if (text < 1) {
+                text = 1;
+            }
+            $(this).parent().find('.sqrt').text(text);
+            if (text == 1) {
+                $(this).parent().find('.minus').removeClass('minusActive');
+            }
+            var txt = $(this).parent().find('.word').val();
+            $('.article:contains("' + txt + '")').find('.nu').find('.number').text(text);
+        })
+        $('.word').focus(function () {
+            prev = $(this).val();
+        })
+        $('.word').focusout(function () {
+            current = $(this).val();
+            if (prev != current) {
+                $('.article:contains("' + prev + '")').text(current);
+                var leftNode = $('.article:contains("' + prev + '")');
+                var AMOUNT = $('.nu').html();
+                leftNode.append(AMOUNT);
+            }
+        })
+        $('.bought').click(function () {
+            $(this).parent().find('.word').addClass("crossedOut")
+            $(this).parent().find('.circ').hide();
+            $(this).parent().find('.sqrt').addClass("boughtArticleAmount");
+            $(this).parent().find('.bought').hide();
+            $(this).parent().find('.notB').show();
+            $(this).parent().find('.cross').hide();
+            var txt = $(this).parent().find('.word').val();
+            $('.article:contains("' + txt + '")').hide();
+            var boughtNode = $(BOUGHT_ITEMS);//
+            boughtNode.text(txt);//
+            BOUGHT_LIST.append(boughtNode);//
+            var AMOUNT = $('.nu').html();//
+
+            boughtNode.append(AMOUNT);//
+            boughtNode.addClass('crossedOut');
+
+
+        })
+
+        $('.notB').click(function () {
+            $(this).parent().find('.word').removeClass("crossedOut")
+            $(this).parent().find('.circ').show();
+            var LIST_C = $('.title');
+            var ITEM_TEMPLATE_C = $('.centre').html();
+            var nodeC = $(ITEM_TEMPLATE_C);
+            LIST_C.append(nodeC);
+            $(this).parent().find('.sqrt').removeClass("boughtArticleAmount");
+            $(this).parent().find('.notB').hide();
+            $(this).parent().find('.bought').show();
+            $(this).parent().find('.bought').text("Куплено");
+            $(this).parent().find('.cross').show();
+            var txt = $(this).parent().find('.word').val();
+            $('.article:contains("' + txt + '")').show();
+            $('.article:contains("' + txt + '")').filter('.crossedOut').hide();
+        });
     });
     $('.cross').click(function () {
         $(this).parent().hide();
-        //if($(this).parent().find('.word').val()==$(".article").text()){
-        //    $(".article").hide();
-        //}
-        var txt=$(this).parent().find('.word').val();
-        $('.article:contains("'+txt+'")').hide();
-        //$(".article").attr("text", txt).hide();
-        //$('[text=txt]').hide();
+        var txt = $(this).parent().find('.word').val();
+        $('.article:contains("' + txt + '")').hide();
 
     })
     $('.bought').click(function () {
         $(this).parent().find('.word').addClass("crossedOut")
         $(this).parent().find('.circ').hide();
         $(this).parent().find('.sqrt').addClass("boughtArticleAmount");
-        $(this).parent().find('.bought').addClass("notB");
-        $(this).parent().find('.bought').removeClass("bought");
-        $(this).parent().find('.notB').text("Не куплено");
+        $(this).parent().find('.bought').hide();
+        $(this).parent().find('.notB').show();
         $(this).parent().find('.cross').hide();
-        var txt=$(this).parent().find('.word').val();
-        $('.article:contains("'+txt+'")').hide();
+        var txt = $(this).parent().find('.word').val();
+        $('.article:contains("' + txt + '")').hide();
         var boughtNode = $(BOUGHT_ITEMS);//
         boughtNode.text(txt);//
         BOUGHT_LIST.append(boughtNode);//
-        var AMOUNT =$('.nu').html();//
+        var AMOUNT = $('.nu').html();//
 
         boughtNode.append(AMOUNT);//
-        //AMOUNT.addClass('crossedOut');
         boughtNode.addClass('crossedOut');
 
-        $('.notB').click(function () {
-            $(this).parent().find('.word').removeClass("crossedOut")
-            //$(this).parent().find('.circ').append();
-            //$('.title').append($($('.centre').html()));
-            var LIST_C = $('.title');
-            var ITEM_TEMPLATE_C = $('.centre').html();
-            var nodeC = $(ITEM_TEMPLATE_C);
-            LIST_C.append(nodeC);
-            $(this).parent().find('.sqrt').removeClass("boughtArticleAmount");
-            $(this).parent().find('.notB').removeClass("bought");
-            $(this).parent().find('.bought').removeClass("notB");
-            $(this).parent().find('.bought').text("Куплено");
-            $(this).parent().find('.cross').append();
 
-        })
     })
 
+    $('.notB').click(function () {
+        $(this).parent().find('.word').removeClass("crossedOut")
+        $(this).parent().find('.circ').show();
+        var LIST_C = $('.title');
+        var ITEM_TEMPLATE_C = $('.centre').html();
+        var nodeC = $(ITEM_TEMPLATE_C);
+        LIST_C.append(nodeC);
+        $(this).parent().find('.sqrt').removeClass("boughtArticleAmount");
+        $(this).parent().find('.notB').hide();
+        $(this).parent().find('.bought').show();
+        $(this).parent().find('.bought').text("Куплено");
+        $(this).parent().find('.cross').show();
+        var txt = $(this).parent().find('.word').val();
+        $('.article:contains("' + txt + '")').show();
+        $('.article:contains("' + txt + '")').filter('.crossedOut').hide();
+    });
 
-    //var activeInput=false;
-    //var name;
-    //var p=$('<input type="text" class="word editing">');
-    //$('.word').click(function () {
-    //    name = $(this).text();
-    //    $(this).hide();
-    //    //p = $('<input type="text" class="word editing">');
-    //    p.val(name);
-    //    $(this).parent().prepend(p);
-    //    activeInput=true;
-    //    p.focus();
-    //
-    //
-    //})
-    //$('body:not(input)').click(function () {
-    //    if(activeInput==true){
-    //        name = p.val();
-    //        p.hide();
-    //        var newTitle = $('<div class="word"></div>');
-    //        newTitle.text(name);
-    //        p.parent().prepend(newTitle);
-    //        activeInput=false;
-    //    }
-    //})
+
     $('.plus').click(function () {
         var text = $(this).parent().find('.sqrt').text();
         text = parseInt(text) + 1;
         $(this).parent().find('.sqrt').text(text);
         $(this).parent().find('.minus').addClass('minusActive');
+        var txt = $(this).parent().find('.word').val();
+        $('.article:contains("' + txt + '")').find('.nu').find('.number').text(text);
     })
     $('.minus').click(function () {
         var text = $(this).parent().find('.sqrt').text();
         text = parseInt(text) - 1;
-        if(text<1){
-            text=1;
+        if (text < 1) {
+            text = 1;
         }
         $(this).parent().find('.sqrt').text(text);
-        if(text==1){
+        if (text == 1) {
             $(this).parent().find('.minus').removeClass('minusActive');
         }
+        var txt = $(this).parent().find('.word').val();
+        $('.article:contains("' + txt + '")').find('.nu').find('.number').text(text);
     })
+
+
+    $('.word').focus(function () {
+        prev = $(this).val();
+    })
+    $('.word').focusout(function () {
+        current = $(this).val();
+        if (prev != current) {
+            $('.article:contains("' + prev + '")').text(current);
+            var node = $('.article:contains("' + prev + '")');
+            var AMOUNT = $('.nu').html();
+            node.append(AMOUNT);
+        }
+        prev = "";
+        current = "";
+    })
+
 });
